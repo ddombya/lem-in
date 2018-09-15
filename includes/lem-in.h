@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.h                                           :+:      :+:    :+:   */
+/*   lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddombya <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:44:41 by ddombya           #+#    #+#             */
-/*   Updated: 2018/08/28 16:05:28 by ddombya          ###   ########.fr       */
+/*   Updated: 2018/09/14 22:21:54 by herve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,27 @@
 # define START 1
 # define END 2
 # define BUFSIZE 1
+# define ERROR 6
+# define HASH 35
 
-typedef struct		s_room
+typedef struct	s_map
+{
+	char		**room;
+	char		*list_room;
+	char		*list_ants;
+	char		*links;
+	int			nb_room;
+	int			ants;
+	int			start;
+	int			cur_room;
+	int			index_path;
+	int			*path;
+	int			**matrix;
+	int			boolean[2];
+	int			nl;
+	int			init_2;
+}				t_map;
+/*typedef struct		s_room
 {
 	char			*name;
 	int				x;
@@ -70,5 +89,5 @@ void			print_lemin(t_main *elem);
 void      		clear_room(t_room *room);
 
 //char			**parse_room_format(char *line);
-//int			parse_comment(char *line);
+//int			parse_comment(char *line);*/
 #endif
