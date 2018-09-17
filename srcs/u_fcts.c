@@ -1,17 +1,45 @@
-#include "includes/lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   u_fcts.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddombya <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/15 12:39:27 by ddombya           #+#    #+#             */
+/*   Updated: 2018/09/15 12:39:31 by ddombya          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/lem-in.h"
+
+void		free_tab(t_map *var, char **tab, int status)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (tab[i])
+			free(tab[i++]);
+	}
+	free(tab);
+	tab = NULL;
+	if (status)
+		ft_exit(var, ERROR);
+}
 
 void		ft_exit(t_map *var, int status)
 {
 	int i;
 
 	i = -1;
-	free(var->links);
+	free(var->tube);
 	free(var->list_room);
 	free(var->list_ants);
 	if (var->init_2)
 	{
 		free(var->path);
-		//
+		free_tab(var, var->room, 0);
 		while (++i < var->nb_room)
 			free(var->matrix[i]);
 		free(var->matrix);
@@ -19,7 +47,7 @@ void		ft_exit(t_map *var, int status)
 	free(var);
 	if (status == ERROR)
 	{
-		ft_putstr_fd("error\n", 2);
+		ft_putstr_fd("ERROR\n", 2);
 		exit(1);
 	}
 }

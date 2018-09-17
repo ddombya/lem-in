@@ -19,18 +19,26 @@
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/get_next_line.h"
 
-# define START 1
-# define END 2
+# define START cmd[0]
+# define END cmd[1]
 # define BUFSIZE 1
 # define ERROR 6
 # define HASH 35
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
+# define BLUE "\033[34m"
+# define PINK "\033[35m"
+# define CYAN "\033[36m"
+# define GREY "\033[37m"
+# define NOCOLOR "\033[0m"
 
 typedef struct	s_map
 {
 	char		**room;
 	char		*list_room;
 	char		*list_ants;
-	char		*links;
+	char		*tube;
 	int			nb_room;
 	int			ants;
 	int			start;
@@ -38,10 +46,31 @@ typedef struct	s_map
 	int			index_path;
 	int			*path;
 	int			**matrix;
-	int			boolean[2];
+	int			cmd[2];
 	int			nl;
 	int			init_2;
 }				t_map;
+
+void			free_tab(t_map *var, char **tab, int status);
+void			ft_exit(t_map *var, int status);
+
+void			count_ants(t_map *var, char *line);
+void            room(t_map *var, char *line);
+void        	tube(t_map *var, char *line);
+
+int             room_index(t_map *var, char *name, int start);
+
+t_map       	*map_init(void);
+t_map       	*map_init2(t_map *var);
+
+void            add_room(t_map *var);
+void			create_tab(t_map *var);
+void            print_tab(t_map *var);
+void            solve_handler(t_map *var);
+
+int				solve(t_map *var, int i);
+
+
 /*typedef struct		s_room
 {
 	char			*name;

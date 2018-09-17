@@ -24,16 +24,26 @@ LDLIBS = -lft
 
 SRC_PATH = srcs
 
-SRC_NAME =	clear_room.c\
-			create_path.c\
-			dijkstra_new.c\
-			dijkstra_process.c\
-			init_main.c\
-			lst_fcts.c\
-			main.c\
-			print_lem-in.c\
-			print_path.c\
-			read_map.c
+SRC_NAME =	add_room.c\
+			count_ants.c\
+			create_tab.c\
+			init.c\
+			print_solve.c\
+			print_tab.c\
+			read_map.c\
+			room.c\
+			solve.c\
+			tube.c\
+			u_fcts.c
+			#clear_room.c\
+			#create_path.c\
+			#dijkstra_new.c\
+			#dijkstra_process.c\
+			#init_main.c\
+			#lst_fcts.c\
+			#main.c\
+			#print_lem-in.c\
+			#print_path.c\*
 
 AR = ar rc
 

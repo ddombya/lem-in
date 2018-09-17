@@ -12,7 +12,7 @@
 
 #include "../includes/lem-in.h"
 
-static int	read_map_room(t_main *elem, char *line, char **cmd)
+/*static int	read_map_room(t_main *elem, char *line, char **cmd)
 {
 	int		i;
 	char	**split;
@@ -134,4 +134,50 @@ void		read_map(t_main *elem)
 		ft_printf("ERROR\n");
 		exit(EXIT_FAILURE);
 	}
+}*/
+
+void		read_map(t_map *var)
+{
+	char *line;
+
+	line = NULL;
+	while (get_next_line(0, &line))
+	{
+		if (!var->ants)
+			count_ants(var, line);
+		else if (ft_strchr(line, '-') || var->start == 3)
+			tube(var, line);
+		else if ((var->start == 1 || var->start == 2))
+			room(var, line);
+		else
+			ft_exit(var, ERROR);
+	}
+	if (!var->ants || !var->tube[0])
+		ft_exit(var, ERROR);
+	var = map_init2(var);
+}
+
+int			main(void)
+{
+	t_map *test;
+	int	i;
+
+	test = map_init();
+	i = 0;
+	read_map(test);
+	add_room(test);
+	/*if (!test->cmd[0] || !test->cmd[1])
+		ft_exit(test, ERROR);*/
+	create_tab(test);
+	//print_tab(test);
+	if (solve(test, 0))
+	{
+		//printf("test\n");	
+		solve_handler(test);
+	}
+	ft_printf("test->cmd[0] = %d et test->cmd[1] = %d\n", test->cmd[0], test->cmd[1]);
+	ft_printf("ants = %d\n", test->ants);
+	ft_printf("tube = %s\n", test->tube);
+	ft_printf("list_room = %s\n", test->list_room);
+	ft_printf("nombre de rooms = %d\n", test->nb_room);
 }

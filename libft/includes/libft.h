@@ -6,7 +6,7 @@
 /*   By: ddombya <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 12:37:44 by ddombya           #+#    #+#             */
-/*   Updated: 2018/08/29 17:28:54 by ddombya          ###   ########.fr       */
+/*   Updated: 2018/09/17 16:16:24 by ddombya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
+char				*strjoin(char const *s1, char const *s2, int free);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 int					ft_strsplit_len(char **str);
