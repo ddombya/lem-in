@@ -6,7 +6,7 @@
 /*   By: ddombya <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 16:22:02 by ddombya           #+#    #+#             */
-/*   Updated: 2018/08/30 13:40:30 by ddombya          ###   ########.fr       */
+/*   Updated: 2018/09/18 18:33:00 by ddombya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,15 @@ void		read_map(t_main *elem)
 		exit(EXIT_FAILURE);
 	}
 }*/
+static int	parse_room(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && ft_isspace(str[i]))
+		i++;
+	return ((i == (int)ft_strlen(str)) ? 1 : 0);
+}
 
 void		read_map(t_map *var)
 {
@@ -147,7 +156,7 @@ void		read_map(t_map *var)
 			count_ants(var, line);
 		else if (ft_strchr(line, '-') || var->start == 3)
 			tube(var, line);
-		else if ((var->start == 1 || var->start == 2))
+		else if ((var->start == 1 || var->start == 2) && !parse_room(line))
 			room(var, line);
 		else
 			ft_exit(var, ERROR);
@@ -166,18 +175,19 @@ int			main(void)
 	i = 0;
 	read_map(test);
 	add_room(test);
-	/*if (!test->cmd[0] || !test->cmd[1])
-		ft_exit(test, ERROR);*/
+	if (!test->START || !test->END)
+	{
+		ft_printf("error1\n");
+		ft_exit(test, ERROR);
+	}
 	create_tab(test);
 	//print_tab(test);
 	if (solve(test, 0))
-	{
-		//printf("test\n");	
 		solve_handler(test);
+	else
+	{
+		ft_printf("error2\n");
+		ft_exit(test, ERROR);
 	}
-	ft_printf("test->cmd[0] = %d et test->cmd[1] = %d\n", test->cmd[0], test->cmd[1]);
-	ft_printf("ants = %d\n", test->ants);
-	ft_printf("tube = %s\n", test->tube);
-	ft_printf("list_room = %s\n", test->list_room);
-	ft_printf("nombre de rooms = %d\n", test->nb_room);
+	ft_exit(test, 0);
 }

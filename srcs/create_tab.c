@@ -6,7 +6,7 @@
 /*   By: ddombya <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 13:04:35 by ddombya           #+#    #+#             */
-/*   Updated: 2018/09/17 13:04:48 by ddombya          ###   ########.fr       */
+/*   Updated: 2018/09/18 17:49:04 by ddombya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			create_tab(t_map *var)
 	tube = ft_strsplit(var->tube, '\n');
 	while (tube[++i])
 	{
-		printf("%s\n", tube[i]);
+		//printf("%s\n", tube[i]);
 		if (tube[i][0] == '#')
 			continue ;
 		valid_tube(var, tube[i]);

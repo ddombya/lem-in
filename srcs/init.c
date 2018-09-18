@@ -6,15 +6,15 @@
 /*   By: ddombya <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 12:41:37 by ddombya           #+#    #+#             */
-/*   Updated: 2018/09/15 12:41:57 by ddombya          ###   ########.fr       */
+/*   Updated: 2018/09/18 15:02:12 by ddombya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-t_map       *map_init(void)
+t_map		*map_init(void)
 {
-	t_map   *var;
+	t_map *var;
 
 	var = (t_map*)ft_memalloc(sizeof(t_map));
 	var->room = NULL;
@@ -27,13 +27,14 @@ t_map       *map_init(void)
 	var->cur_room = 0;
 	var->index_path = 0;
 	var->matrix = NULL;
-	ft_bzero(var->cmd, sizeof(int));
+	var->cmd[0] = 0;
+	var->cmd[1] = 0;
 	var->path = NULL;
 	var->init_2 = 0;
 	return (var);
 }
 
-t_map       *map_init2(t_map *var)
+t_map		*map_init2(t_map *var)
 {
 	int i;
 	int j;

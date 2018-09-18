@@ -6,7 +6,7 @@
 /*   By: ddombya <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 12:39:27 by ddombya           #+#    #+#             */
-/*   Updated: 2018/09/15 12:39:31 by ddombya          ###   ########.fr       */
+/*   Updated: 2018/09/18 14:52:17 by ddombya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void		free_tab(t_map *var, char **tab, int status)
 	while (tab[i])
 	{
 		if (tab[i])
-			free(tab[i++]);
+			free(tab[i]);
+		i++;
 	}
 	free(tab);
-	tab = NULL;
 	if (status)
 		ft_exit(var, ERROR);
+	tab = NULL;
 }
 
 void		ft_exit(t_map *var, int status)
